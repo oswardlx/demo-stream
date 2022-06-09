@@ -19,7 +19,7 @@ spring:
           destination: dataOut
           binder: rabbit1
       function:
-#        definition: sendTestData;process;receive
+#        definition: sendTestData;process;receive213
         definition: sendTestData,receive
       binders:
         rabbit1:
