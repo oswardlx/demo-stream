@@ -1,0 +1,23 @@
+server:
+  port: 8885
+spring:
+  cloud:
+    stream:
+      bindings:
+        sendTestData-out-0:
+          destination: dataOut
+          binder: rabbit1
+        receive-in-0:
+          destination: dataOut
+          binder: rabbit1
+      function:
+        definition: sendTestData,receive
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+

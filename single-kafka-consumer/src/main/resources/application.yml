@@ -1,0 +1,20 @@
+server:
+  port: 8884
+spring:
+  cloud:
+    stream:
+      bindings:
+        receive-in-0:
+          destination: dataIn
+          binder: kafka1
+      function:
+        definition: receive
+      binders:
+        kafka1:
+          type: kafka
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 9092
+

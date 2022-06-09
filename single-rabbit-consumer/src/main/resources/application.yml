@@ -1,0 +1,21 @@
+server:
+  port: 8882
+spring:
+  cloud:
+    stream:
+      bindings:
+        receive-in-0:
+          destination: dataOut
+          binder: rabbit1
+          group: rabbit-group1
+      function:
+        definition: receive
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+
