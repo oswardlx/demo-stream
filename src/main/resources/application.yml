@@ -1,0 +1,39 @@
+server:
+  port: 8888
+spring:
+  cloud:
+    stream:
+      bindings:
+#        process-in-0:
+#          destination: dataIn
+#          binder: kafka
+#        process-out-0:
+#          destination: dataOut
+#          binder: rabbit
+        #Test sink binding (used for testing)
+        sendTestData-out-0:
+          destination: dataOut
+          binder: rabbit1
+#        #Test sink binding (used for testing)
+        receive-in-0:
+          destination: dataOut
+          binder: rabbit1
+      function:
+#        definition: sendTestData;process;receive
+        definition: sendTestData,receive
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+        kafka1:
+          type: kafka
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 9092
+
